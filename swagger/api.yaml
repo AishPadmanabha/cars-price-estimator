@@ -1,0 +1,178 @@
+swagger: '2.0'
+info:
+  title: Car Price Prediction API
+  version: "0.1"
+  description: An API that can predicts the price of used cars
+
+paths:
+  /predict:
+    post:
+      summary: Entrypoint to our prediction function
+      operationId: api.predict
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: manufacturer
+          required: true
+          default: "select"
+          enum: ['select',
+          'volkswagen',
+          'honda',
+          'ford',
+          'nissan',
+          'jeep',
+          'gmc',
+          'hyundai',
+          'chevrolet',
+          'toyota',
+          'lexus',
+          'ram',
+          'dodge',
+          'mini',
+          'audi',
+          'lincoln',
+          'mazda',
+          'mercedes-benz',
+          'acura',
+          'subaru',
+          'bmw',
+          'cadillac',
+          'volvo',
+          'buick',
+          'saturn',
+          'kia',
+          'rover',
+          'infiniti',
+          'mitsubishi',
+          'chrysler',
+          'jaguar']
+          description: company that produced the vehicle
+          type: string
+          
+        - in: formData
+          name: model
+          required: true
+          description: make of the vehicle
+          type: string
+          
+        - in: query
+          name: condition
+          required: true
+          enum: [
+          'excellent', 
+          'good', 
+          'like new', 
+          'fair', 
+          'new', 
+          'salvage']
+          description: current state of the vehicle
+          type: string
+          
+        - in: query
+          name: cylinders
+          required: true
+          enum: [
+          '4 cylinders', 
+          '10 cylinders', 
+          '6 cylinders', 
+          '8 cylinders', 
+          '5 cylinders']
+          description: number of cylinders
+          type: string
+          
+        - in: query
+          name: fuel
+          required: true
+          enum: [
+          'gas', 
+          'other', 
+          'diesel', 
+          'hybrid']
+          description: type of fuel
+          type: string
+          
+        - in: formData
+          name: odometer
+          required: true
+          description: distance travelled by the vehicle
+          type: string
+          
+        - in: query
+          name: transmission
+          required: true
+          enum: [
+          'manual', 
+          'automatic', 
+          'other']
+          description: type of transmission system of the vehicle
+          type: string
+          
+        - in: query
+          name: drive
+          required: true
+          enum: [
+          '4wd', 
+          'fwd', 
+          'rwd']
+          description: type of drive
+          type: string
+          
+        - in: query
+          name: size
+          required: true
+          enum: [
+          'compact', 
+          'mid-size', 
+          'full-size', 
+          'sub-compact']
+          description: size of the vehicle
+          type: string
+          
+        - in: query
+          name: vtype
+          required: true
+          enum: ['hatchback',
+          'sedan',
+          'truck',
+          'coupe',
+          'SUV',
+          'pickup',
+          'wagon',
+          'convertible',
+          'van',
+          'other',
+          'mini-van',
+          'bus']
+          description: configuration of the vehicle
+          type: string
+          
+        - in: query
+          name: paint_color
+          required: true
+          enum: ['black',
+          'grey',
+          'white',
+          'blue',
+          'custom',
+          'yellow',
+          'silver',
+          'red',
+          'brown',
+          'green']
+          description: color of the vehicle body
+          type: string
+          
+        - in: formData
+          name: year
+          required: true
+          description: manufacturing year of the vehicle
+          type: number
+        
+      responses:
+        '200':
+          description: Prediction performed successfully
+        '500':
+          description: Unable to perform the prediction
