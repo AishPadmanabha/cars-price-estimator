@@ -1,5 +1,5 @@
 sklearn
 connexion[swagger-ui]
-joblib==0.14.1
+joblib==1.2.0
 matplotlib
 pandas
